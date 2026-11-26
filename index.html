@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoCiencia | Aprende explorando</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f9f4;
+    color: #244437;
+}
+
+header {
+    background: #145c42;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    margin-top: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+}
+
+.hero {
+    text-align: center;
+    padding: 65px 20px;
+    background: linear-gradient(135deg, #b7eac8, #e6f7c9);
+}
+
+.hero h1 {
+    font-size: 38px;
+    color: #145c42;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    max-width: 650px;
+    margin: auto;
+    line-height: 1.7;
+}
+
+button {
+    background: #208052;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 8px;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #145c42;
+}
+
+section {
+    padding: 45px 7%;
+}
+
+h2 {
+    text-align: center;
+    color: #145c42;
+    margin-bottom: 25px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 4px 12px #00000010;
+}
+
+.card span {
+    font-size: 45px;
+}
+
+.card h3 {
+    margin: 12px;
+    color: #208052;
+}
+
+.card p {
+    line-height: 1.6;
+}
+
+.actividad {
+    background: #dff3e6;
+    text-align: center;
+}
+
+.caja {
+    background: white;
+    max-width: 650px;
+    padding: 30px;
+    margin: auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px #00000010;
+}
+
+.opciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+#respuesta, #resultado {
+    margin-top: 18px;
+    font-weight: bold;
+    line-height: 1.6;
+}
+
+.dato {
+    background: #fff5d7;
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 650px;
+    margin: auto;
+    text-align: center;
+}
+
+footer {
+    background: #145c42;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+@media(max-width: 600px) {
+    .hero h1 {
+        font-size: 29px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🌿 EcoCiencia</h1>
+    <p>¡Aprende, explora y descubre!</p>
+
+    <nav>
+        <a href="#ramas">Ramas</a>
+        <a href="#juego">Juego</a>
+        <a href="#experimento">Experimento</a>
+        <a href="#curiosidades">Curiosidades</a>
+    </nav>
+</header>
+
+<div class="hero">
+    <h1>¡Bienvenido al mundo de las Ciencias Naturales!</h1>
+
+    <p>
+        ¿Alguna vez te has preguntado cómo funciona tu cuerpo,
+        por qué llueve o qué hay en el espacio?
+        Aquí podrás descubrirlo mediante juegos y actividades.
+    </p>
+
+    <button onclick="document.getElementById('ramas').scrollIntoView()">
+        ¡Comenzar aventura!
+    </button>
+</div>
+
+<section id="ramas">
+    <h2>🔬 Explora las ramas de las ciencias</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <span>🧬</span>
+            <h3>Biología</h3>
+            <p>Estudia los seres vivos, sus características y su relación con el ambiente.</p>
+            <button onclick="mostrar('bio')">Descubrir más</button>
+            <p id="bio"></p>
+        </div>
+
+        <div class="card">
+            <span>⚗️</span>
+            <h3>Química</h3>
+            <p>Estudia la materia, sus propiedades y cómo se transforma.</p>
+            <button onclick="mostrar('qui')">Descubrir más</button>
+            <p id="qui"></p>
+        </div>
+
+        <div class="card">
+            <span>⚡</span>
+            <h3>Física</h3>
+            <p>Explica el movimiento, la energía, la luz y muchos fenómenos naturales.</p>
+            <button onclick="mostrar('fis')">Descubrir más</button>
+            <p id="fis"></p>
+        </div>
+
+        <div class="card">
+            <span>🌎</span>
+            <h3>Geología</h3>
+            <p>Estudia la Tierra, sus rocas, volcanes y los cambios de su superficie.</p>
+            <button onclick="mostrar('geo')">Descubrir más</button>
+            <p id="geo"></p>
+        </div>
+
+    </div>
+</section>
+
+<section class="actividad" id="juego">
+    <h2>🎮 ¡Pon a prueba tus conocimientos!</h2>
+
+    <div class="caja">
+        <h3 id="pregunta">¿Qué ciencia estudia los seres vivos?</h3>
+
+        <div class="opciones" id="opciones">
+            <button onclick="responder(0)">Física</button>
+            <button onclick="responder(1)">Biología</button>
+            <button onclick="responder(2)">Química</button>
+        </div>
+
+        <p id="respuesta"></p>
+
+        <button onclick="siguiente()">Siguiente pregunta ➜</button>
+
+        <p id="puntos">Puntos: 0</p>
+    </div>
+</section>
+
+<section id="experimento">
+    <h2>🧪 ¡Conviértete en científico!</h2>
+
+    <div class="caja">
+        <h3>El agua que camina</h3>
+
+        <p><strong>Materiales:</strong></p>
+        <p>3 vasos transparentes, agua, colorante alimentario y papel absorbente.</p>
+
+        <p><strong>Procedimiento:</strong></p>
+        <p>
+            1. Llena dos vasos con agua y agrega colorante de diferentes colores.
+            <br>
+            2. Coloca los vasos en una fila, dejando uno vacío en el centro.
+            <br>
+            3. Dobla dos tiras de papel absorbente y coloca una punta en cada vaso
+            de los extremos y la otra en el vaso del centro.
+            <br>
+            4. Observa lo que sucede durante las siguientes horas.
+        </p>
+
+        <button onclick="document.getElementById('explicacion').style.display='block'">
+            ¿Por qué sucede?
+        </button>
+
+        <p id="explicacion" style="display:none;">
+            El agua se mueve por los pequeños espacios del papel mediante
+            un fenómeno llamado capilaridad. Así, el agua coloreada llega
+            al vaso del centro y puede mezclarse.
+        </p>
+    </div>
+</section>
+
+<section class="curiosidades" id="curiosidades">
+    <h2>🤯 ¡Datos curiosos!</h2>
+
+    <div class="dato">
+        <h3 id="dato">Las abejas pueden reconocer algunos rostros humanos.</h3>
+        <button onclick="cambiarDato()">Otro dato curioso 🔄</button>
+    </div>
+</section>
+
+<footer>
+    <h3>🌱 EcoCiencia</h3>
+    <p>Aprender sobre la naturaleza es el primer paso para protegerla.</p>
+</footer>
+
+<script>
+function mostrar(id) {
+    const textos = {
+        bio: "¡Dato! Todos los seres vivos están formados por células.",
+        qui: "¡Dato! El agua está formada por hidrógeno y oxígeno.",
+        fis: "¡Dato! La luz del Sol tarda aproximadamente 8 minutos en llegar a la Tierra.",
+        geo: "¡Dato! Las rocas pueden tardar millones de años en formarse."
+    };
+
+    document.getElementById(id).innerText = textos[id];
+}
+
+const preguntas = [
+    {
+        pregunta: "¿Qué ciencia estudia los seres vivos?",
+        opciones: ["Física", "Biología", "Química"],
+        correcta: 1,
+        explicacion: "¡Correcto! La biología estudia los seres vivos."
+    },
+    {
+        pregunta: "¿Cuál es el planeta donde vivimos?",
+        opciones: ["Marte", "Venus", "Tierra"],
+        correcta: 2,
+        explicacion: "¡Muy bien! La Tierra es nuestro planeta."
+    },
+    {
+        pregunta: "¿Qué necesitan las plantas para realizar la fotosíntesis?",
+        opciones: ["Luz solar", "Oscuridad total", "Piedras"],
+        correcta: 0,
+        explicacion: "¡Excelente! Las plantas necesitan luz para realizar la fotosíntesis."
+    },
+    {
+        pregunta: "¿Cuál es el estado sólido del agua?",
+        opciones: ["Vapor", "Hielo", "Lluvia"],
+        correcta: 1,
+        explicacion: "¡Correcto! El hielo es agua en estado sólido."
+    },
+    {
+        pregunta: "¿Qué órgano bombea la sangre?",
+        opciones: ["Pulmón", "Cerebro", "Corazón"],
+        correcta: 2,
+        explicacion: "¡Muy bien! El corazón bombea la sangre por el cuerpo."
+    }
+];
+
+let actual = 0;
+let puntos = 0;
+let contestada = false;
+
+function cargarPregunta() {
+    const p = preguntas[actual];
+
+    document.getElementById("pregunta").innerText = p.pregunta;
+    document.getElementById("respuesta").innerText = "";
+    document.getElementById("opciones").innerHTML = "";
+
+    contestada = false;
+
+    p.opciones.forEach((opcion, i) => {
+        const boton = document.createElement("button");
+        boton.innerText = opcion;
+        boton.onclick = () => responder(i);
+        document.getElementById("opciones").appendChild(boton);
+    });
+}
+
+function responder(opcion) {
+    if (contestada) return;
+
+    contestada = true;
+
+    if (opcion === preguntas[actual].correcta) {
+        puntos++;
+        document.getElementById("respuesta").innerText =
+            preguntas[actual].explicacion;
+    } else {
+        document.getElementById("respuesta").innerText =
+            "¡Casi! La respuesta correcta es: " +
+            preguntas[actual].opciones[preguntas[actual].correcta] +
+            ". ¡Sigue aprendiendo!";
+    }
+
+    document.getElementById("puntos").innerText = "Puntos: " + puntos;
+}
+
+function siguiente() {
+    if (!contestada) {
+        document.getElementById("respuesta").innerText =
+            "¡Primero elige una respuesta!";
+        return;
+    }
+
+    actual++;
+
+    if (actual >= preguntas.length) {
+        document.getElementById("pregunta").innerText =
+            "¡Terminaste el juego!";
+
+        document.getElementById("opciones").innerHTML = "";
+        document.getElementById("respuesta").innerText =
+            "Tu puntuación final es " + puntos + " de " +
+            preguntas.length + ". " +
+            (puntos === preguntas.length
+                ? "¡Eres un gran explorador!"
+                : "¡Sigue practicando para aprender más!");
+
+        document.getElementById("puntos").innerText =
+            "Juego terminado";
+
+        actual = -1;
+        puntos = 0;
+
+        return;
+    }
+
+    cargarPregunta();
+}
+
+const datos = [
+    "Las abejas pueden reconocer algunos rostros humanos.",
+    "El corazón humano late aproximadamente 100.000 veces al día.",
+    "Los pulpos tienen tres corazones.",
+    "La luz del Sol tarda unos 8 minutos en llegar a la Tierra.",
+    "Algunas plantas pueden atrapar insectos para obtener nutrientes."
+];
+
+let indiceDato = 0;
+
+function cambiarDato() {
+    indiceDato = (indiceDato + 1) % datos.length;
+    document.getElementById("dato").innerText = datos[indiceDato];
+}
+
+cargarPregunta();
+</script>
+
+</body>
+</html>
